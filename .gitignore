@@ -1,3 +1,6 @@
 .DS_Store
 *.Class
 bin/
+bin/chat/controller/ChatController.class
+bin/chat/controller/ChatController.class
+bin/chat/view/PopupDisplay.class
