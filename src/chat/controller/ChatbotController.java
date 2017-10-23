@@ -1,9 +1,9 @@
 package chat.controller;
 import chat.view.PopupDisplay;
-public class ChatController 
+public class ChatbotController 
 {
 	private PopupDisplay popup;
-	public ChatController()
+	public ChatbotController()
 	{
 		popup = new PopupDisplay();
 	}
