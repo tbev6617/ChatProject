@@ -10,6 +10,6 @@ public class ChatbotController
 	public void start()
 	{
 		popup.displayText("Ho Ho Ho. Merry Christmas!");
-		popup.getResponse("How are you?");
+		popup.getResponse("Have you been on your best behavior?");
 	}
 }
