@@ -20,20 +20,30 @@ public class Chatbot
 	
 	public Chatbot(String username)
 	{
-		this.movieList = null;
-		this.shoppingList = null;
-		this.cuteAnimalMemes = null;
+		this.movieList = new ArrayList<Movie>();
+		this.shoppingList = new ArrayList<String>();
+		this.cuteAnimalMemes = new ArrayList<String>();
 		this.currentTime = null;
 		this.questions = null;
 		this.username = username;
 		this.content = null;
 		this.intro = null;
-		this.currentTime = null;
 		this.topics = null;
-		this.verbs = null;
+		this.verbs = new String[4];
 		this.followUps = null;
+		
+		buildVerbs();
+		buildShoppingList();
+		buildCuteAnimals();
 	}
-
+	
+	private void buildVerbs()
+	{
+		verbs[0] = "like";
+		verbs[1] = "dislike";
+		verbs[2] = "am indecisive about";
+		verbs[3] = "am thinking about";
+	}
 	private void buildMovieList()
 	{
 		
@@ -41,19 +51,25 @@ public class Chatbot
 	
 	private void buildShoppingList()
 	{
-		
+		shoppingList.add("protein");
+		shoppingList.add("veggies");
+		shoppingList.add("snacks");
+		shoppingList.add("corn");
+		shoppingList.add("slug bait");
 	}
 	
 	private void buildCuteAnimals()
 	{
-		
+		cuteAnimalMemes.add("otter");
+		cuteAnimalMemes.add("pupper");
+		cuteAnimalMemes.add("kittie");
+		cuteAnimalMemes.add("floofer");
 	}
 	
 	private void buildQuestions()
 	{
 		
 	}
-	
 	public String processConversation(String input)
 	{
 		return null;
@@ -61,9 +77,12 @@ public class Chatbot
 	
 	public boolean lengthChecker(String input)
 	{
+		if (input != null && input.length() > 2)
+		{
+			return true;
+		}
 		return false;
 	}
-	
 	public boolean htmlTagChecker(String input)
 	{
 		return false;
@@ -81,6 +100,13 @@ public class Chatbot
 	
 	public boolean cuteAnimalMemeChecker(String input)
 	{
+		for(String item : cuteAnimalMemes)
+		{
+			if(input.equals(item)) 
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 	
