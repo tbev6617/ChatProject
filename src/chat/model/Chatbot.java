@@ -92,11 +92,18 @@ public class Chatbot
 		questions[8] = "Do you fear a robot uprising?";
 		questions[9] = "Do you like magic?";
 	}
+
 	public String processConversation(String input)
 	{
-		return null;
+		String response = "You said \n" + input + "\n";
+		response += buildChatbotResponse();
+		return response;
 	}
-	
+	public String buildChatbotResponse()
+	{
+		String response = "";
+		return response;
+	}
 	public boolean lengthChecker(String input)
 	{
 		if (input != null && input.length() > 2)
