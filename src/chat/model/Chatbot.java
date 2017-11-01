@@ -29,7 +29,7 @@ public class Chatbot
 		this.content = null;
 		this.intro = null;
 		this.topics = new String[7];;
-		this.verbs = new String[4];
+		this.verbs = new String[6];
 		this.followUps = new String[5];
 		
 		buildVerbs();
@@ -46,6 +46,8 @@ public class Chatbot
 		verbs[1] = "dislike";
 		verbs[2] = "am indecisive about";
 		verbs[3] = "am thinking about";
+		verbs[4] = "love";
+		verbs[5] = "am watching";
 	}
 	private void buildMovieList()
 	{
@@ -126,7 +128,7 @@ public class Chatbot
 	}
 	public boolean lengthChecker(String input)
 	{
-		if (input != null && input.length() > 2)
+		if (input != null && input.length() >= 2)
 		{
 			return true;
 		}
@@ -139,7 +141,18 @@ public class Chatbot
 	
 	public boolean userNameChecker(String input)
 	{
-		return false;
+		if(input == null || input.length() == 0 || !input.substring(0, 1).equals("@"))
+		{
+			return false;
+		}
+		for(int i = 1; i < input.length(); i++)
+		{
+			if(input.substring(i, i + 1).equals("@"))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public boolean contentChecker(String contentCheck)
@@ -185,6 +198,10 @@ public class Chatbot
 	
 	public boolean movieGenreChecker(String genre)
 	{
+		if(genre.toLowerCase().equals("documentary") || genre.toLowerCase().equals("thriller"))
+		{
+			return true;
+		}
 		return false;
 	}
 
@@ -199,20 +216,30 @@ public class Chatbot
 
 	public boolean keyboardMashChecker(String sample)
 	{
-		String keyboard = "qwertyuiop[]asdfghjkl;'zxcvbnm,./";
-		for(int i = 0; i < keyboard.length() - 2; i++)
+		//The word Were can be incorrectly shown as mash so I check for that
+		if(sample.toLowerCase().contains("were"))
 		{
-			String keys = keyboard.substring(i, i + 3);
-			//check forward
-			if(keys.equals(sample.toLowerCase()))
+			return false;
+		}
+		
+		String keyboard = "qwertyuiop[]asdfghjkl;'zxcvbnm,./";
+		for (int index = 0; index < sample.length() - 2; index ++)
+		{
+			String sampleKeys = sample.substring(index, index + 3);
+			for(int i = 0; i < keyboard.length() - 2; i++)
 			{
-				return true;
-			}
-			//check backward
-			keys = keys.substring(2, 3) + keys.substring(1, 2) + keys.substring(0, 1);
-			if(keys.equals(sample.toLowerCase()))
-			{
-				return true;
+				String keys = keyboard.substring(i, i + 3);
+				//check forward
+				if(keys.equals(sampleKeys.toLowerCase()))
+				{
+					return true;
+				}
+				//check backward
+				keys = keys.substring(2, 3) + keys.substring(1, 2) + keys.substring(0, 1);
+				if(keys.equals(sampleKeys.toLowerCase()))
+				{
+					return true;
+				}
 			}
 		}
 		return false;

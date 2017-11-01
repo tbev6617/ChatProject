@@ -8,7 +8,7 @@ public class ChatbotController
 	
 	public ChatbotController()
 	{
-		chatbot = new Chatbot("Santa");
+		chatbot = new Chatbot("@Santa");
 		popup = new PopupDisplay();
 	}
 	public void start()
@@ -17,7 +17,14 @@ public class ChatbotController
 		
 		while(chatbot.quitChecker(input) == false && chatbot.lengthChecker(input))
 		{
-			input = popup.getResponse(chatbot.processConversation(input));
+			if(chatbot.keyboardMashChecker(input))
+			{
+				input = popup.getResponse("Don't mash your keyboard that's bad for it");
+			}
+			else
+			{
+				input = popup.getResponse(chatbot.processConversation(input));
+			}
 		}
 		popup.displayText("Goodbye");
 	}
