@@ -37,6 +37,7 @@ public class Chatbot
 		buildCuteAnimals();
 		buildQuestions();
 		buildMovieList();
+		buildTopics();
 	}
 
 	private void buildVerbs()
@@ -83,23 +84,32 @@ public class Chatbot
 	{
 		questions[0] = "What is your name?";
 		questions[1] = "What is your quest?";
-		questions[2] = "what is your favorite color?";
+		questions[2] = "What is your favorite color?";
 		questions[3] = "Do you like movies?";
 		questions[4] = "What is your favorite movie?";
 		questions[5] = "Do you like shopping?";
 		questions[6] = "Do you like cute animal memes?";
-		questions[7] = "Is the cake a lie?";
-		questions[8] = "Do you fear a robot uprising?";
-		questions[9] = "Do you like magic?";
+		questions[7] = "Have you been a good kid this year?";
+		questions[8] = "What is your favorite holiday?";
+		questions[9] = "Do you like elves?";
 	}
-
+	private void buildTopics()
+	{
+		topics[0] = "Christmas";
+		topics[1] = "children";
+		topics[2] = "elves";
+		topics[3] = "toys";
+		topics[4] = "fireworks";
+		topics[5] = "movies";
+		topics[6] = "cute animal memes";
+	}
 	public String processConversation(String input)
 	{
-		String response = "You said \n" + input + "\n";
+		String response = "You said: " + input + "\n";
 		response += buildChatbotResponse();
 		return response;
 	}
-	public String buildChatbotResponse()
+	private String buildChatbotResponse()
 	{
 		String response = "I ";
 		
@@ -116,7 +126,7 @@ public class Chatbot
 	}
 	public boolean lengthChecker(String input)
 	{
-		if (input != null && input.length() > 2)
+		if (input != null && input.length() > 0)
 		{
 			return true;
 		}
@@ -180,6 +190,10 @@ public class Chatbot
 
 	public boolean quitChecker(String exitString)
 	{
+		if (exitString.contains("quit") || exitString.contains("exit"))
+		{
+			return true;
+		}
 		return false;
 	}
 

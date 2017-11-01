@@ -1,15 +1,24 @@
 package chat.controller;
 import chat.view.PopupDisplay;
+import chat.model.Chatbot;
 public class ChatbotController 
 {
 	private PopupDisplay popup;
+	private Chatbot chatbot;
+	
 	public ChatbotController()
 	{
+		chatbot = new Chatbot("Santa");
 		popup = new PopupDisplay();
 	}
 	public void start()
 	{
-		popup.displayText("Ho Ho Ho. Merry Christmas!");
-		popup.getResponse("Have you been on your best behavior?");
+		String input = popup.getResponse("Ho Ho Ho. Merry Christmas! \nAre you ready to talk to Santa?");
+		
+		while(chatbot.quitChecker(input) == false && chatbot.lengthChecker(input))
+		{
+			input = popup.getResponse(chatbot.processConversation(input));
+		}
+		popup.displayText("Goodbye");
 	}
 }
