@@ -126,7 +126,7 @@ public class Chatbot
 	}
 	public boolean lengthChecker(String input)
 	{
-		if (input != null && input.length() > 0)
+		if (input != null && input.length() > 2)
 		{
 			return true;
 		}
@@ -190,7 +190,7 @@ public class Chatbot
 
 	public boolean quitChecker(String exitString)
 	{
-		if (exitString.contains("quit") || exitString.contains("exit"))
+		if (exitString != null && exitString.toLowerCase().equals("quit"))
 		{
 			return true;
 		}
