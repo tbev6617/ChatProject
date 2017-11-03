@@ -1,6 +1,9 @@
 package chat.model;
 
 import java.util.List;
+import chat.view.PopupDisplay;
+import chat.model.Movie;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -17,7 +20,7 @@ public class Chatbot
 	private String content;
 	private String intro;
 	private LocalTime currentTime;
-	
+	private PopupDisplay popup;
 	public Chatbot(String username)
 	{
 		this.movieList = new ArrayList<Movie>();
@@ -31,6 +34,7 @@ public class Chatbot
 		this.topics = new String[7];;
 		this.verbs = new String[6];
 		this.followUps = new String[5];
+		popup = new PopupDisplay();
 		
 		buildVerbs();
 		buildShoppingList();
@@ -57,6 +61,9 @@ public class Chatbot
 		movieList.add(new Movie("The Avengers"));
 		movieList.add(new Movie("Inception"));
 		movieList.add(new Movie("Hidden Figures"));
+		movieList.add(new Movie("Lord of the Rings"));
+		movieList.add(new Movie("The Lego Movie"));
+		movieList.add(new Movie("Toy Story"));
 	}
 	
 	private void buildShoppingList()
@@ -176,7 +183,7 @@ public class Chatbot
 	{
 		for (String item: shoppingList)
 		{
-			if (item.equals(shoppingItem))
+			if (item.equals(shoppingItem.toLowerCase()))
 			{
 				return true;
 			}
@@ -213,7 +220,7 @@ public class Chatbot
 		}
 		return false;
 	}
-
+	
 	public boolean keyboardMashChecker(String sample)
 	{
 		//The word Were can be incorrectly shown as mash so I check for that
@@ -244,7 +251,59 @@ public class Chatbot
 		}
 		return false;
 	}
-	
+	public void showLennyMagic()
+	{
+		popup.displayText("( ͡° ل͜ ͡°)\nThis is Lenny");
+		popup.displayText("( ͡° ل͜ ͡°)\nHe is my assistant");
+		popup.displayText("( ͡° ل͜ ͡°)\nLet's make him disappear");
+		popup.displayText("━☆ﾟ.*･｡ﾟ( ͡° ل͜ ͡°)\nLet's make him disappear.");
+		popup.displayText("━☆ﾟ.'･*ﾟ{･｡POOF.}\nLet's make him disappear.");
+		popup.displayText("\n");
+		popup.displayText("Where did he go?");
+		popup.displayText("✧･ﾟ: *✧･ﾟ:*( ͡° ͜ʖ ͡°)*:･ﾟ✧*:･ﾟ✧\nABRACADABRA!");
+		
+	}
+	public void showMovieMagic()
+	{
+		popup.displayText("Think of a random two digit number. \nThink of the sum of the two digits and subtract that from the original number to get a new number\n"
+				+ "ie.\n42 is my number\n4 + 2 = 6\nSo I do 42 - 6 to get a new number");
+		int randomIndex = (int) (Math.random() * movieList.size());
+		String theirMovie = movieList.get(randomIndex).getTitle();
+		//1st 50 movies
+		String movies = "";
+		for (int i = 1; i <= 50; i++)
+		{
+			if(i % 9 == 0)
+			{
+				movies += i + ". " + theirMovie + "\n";
+			}
+			else
+			{
+				randomIndex = (int) (Math.random() * movieList.size());
+				movies += i + ". " + movieList.get(randomIndex).getTitle() + "\n";
+			}
+		}
+		popup.displayText("This is part 1 of a randomly generated list of movies \nIf your number is 1-50, find the one that corresponds to your number\n" + movies);
+		
+		//2nd 50 movies
+		movies = "";
+		for (int i = 51; i <= 100; i++)
+		{
+			if(i % 9 == 0)
+			{
+				movies += i + ". " + theirMovie + "\n";
+			}
+			else
+			{
+				randomIndex = (int) (Math.random() * movieList.size());
+				movies += i + ". " + movieList.get(randomIndex).getTitle() + "\n";
+			}
+		}
+		popup.displayText("This is part 2 of a randomly generated list of movies \nIf your number is 51-100, find the one that corresponds to your number\n" + movies);
+		popup.displayText("I'm thinking...");
+		popup.displayText("I'm thinking really hard");
+		popup.displayText("Your movie was " + theirMovie);
+	}
 	public List<Movie> getMovieList()
 	{
 		return movieList;
