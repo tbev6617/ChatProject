@@ -17,7 +17,7 @@ public class Movie
 		this.title = title;
 		this.genre = "";
 		this.ratingMPAA = "";
-		this.review = "";
+		this.review = "-Movie has not been reviewed-";
 		this.length = 0;
 		this.releaseDate = null;
 		this.starScore = Double.NaN;
