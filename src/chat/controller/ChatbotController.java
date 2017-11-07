@@ -53,12 +53,13 @@ public class ChatbotController
 	public boolean isYes (String answer)
 	{
 		answer = answer.toLowerCase();
-		String[] yesArray = new String[5];
+		String[] yesArray = new String[6];
 		yesArray[0] = "yes";
 		yesArray[1] = "yep";
 		yesArray[2] = "yeah";
 		yesArray[3] = "absolutely";
 		yesArray[4] = "definitely";
+		yesArray[5] = "for sure";
 		
 		for (String item : yesArray)
 		{

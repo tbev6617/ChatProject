@@ -253,14 +253,14 @@ public class Chatbot
 	}
 	public void showLennyMagic()
 	{
-		popup.displayText("( ͡° ل͜ ͡°)\nThis is Lenny");
-		popup.displayText("( ͡° ل͜ ͡°)\nHe is my assistant");
-		popup.displayText("( ͡° ل͜ ͡°)\nLet's make him disappear");
-		popup.displayText("━☆ﾟ.*･｡ﾟ( ͡° ل͜ ͡°)\nLet's make him disappear.");
-		popup.displayText("━☆ﾟ.'･*ﾟ{･｡POOF.}\nLet's make him disappear.");
+		popup.displayText("¯\\_(ツ)_/¯\nThis is shrug face");
+		popup.displayText("¯\\_(ツ)_/¯\nHe is my assistant");
+		popup.displayText("¯\\_(ツ)_/¯\nLet's make him disappear");
+		popup.displayText("━☆ﾟ.*･｡ﾟ¯\\_(ツ)_/¯\nLet's make him disappear.");
+		popup.displayText("━☆ﾟ.'･*ﾟ{･POOF.}\nLet's make him disappear.");
 		popup.displayText("\n");
 		popup.displayText("Where did he go?");
-		popup.displayText("✧･ﾟ: *✧･ﾟ:*( ͡° ͜ʖ ͡°)*:･ﾟ✧*:･ﾟ✧\nABRACADABRA!");
+		popup.displayText("✧･ﾟ: *✧･ﾟ:*¯\\_(ツ)_/¯*:･ﾟ✧*:･ﾟ✧\nABRACADABRA!");
 		
 	}
 	public void showMovieMagic()
