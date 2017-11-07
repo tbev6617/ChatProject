@@ -26,10 +26,10 @@ public class Chatbot
 		this.movieList = new ArrayList<Movie>();
 		this.shoppingList = new ArrayList<String>();
 		this.cuteAnimalMemes = new ArrayList<String>();
-		this.currentTime = null;
+		this.currentTime = LocalTime.now();
 		this.questions = new String[10];
 		this.username = username;
-		this.content = null;
+		this.content = "-No content entered-";
 		this.intro = null;
 		this.topics = new String[7];;
 		this.verbs = new String[6];
@@ -114,7 +114,10 @@ public class Chatbot
 	}
 	public String processConversation(String input)
 	{
+		//you said
 		String response = "You said: " + input + "\n";
+		
+		//I say and give question
 		response += buildChatbotResponse();
 		return response;
 	}
@@ -130,6 +133,13 @@ public class Chatbot
 		
 		random= (int) (Math.random() * questions.length);
 		response += questions[random];
+		
+		random = (int)(Math.random() * 2);
+			if (random % 2 == 0)
+		{
+				random = (int)(Math.random() * movieList.size());
+				response += "\n" + movieList.get(random).toString();
+		}
 		
 		return response;
 	}
@@ -183,7 +193,7 @@ public class Chatbot
 	{
 		for (String item: shoppingList)
 		{
-			if (item.equals(shoppingItem.toLowerCase()))
+			if (item.equalsIgnoreCase(shoppingItem))
 			{
 				return true;
 			}
@@ -281,10 +291,10 @@ public class Chatbot
 			else
 			{
 				randomIndex = (int) (Math.random() * movieList.size());
-				movies += i + ". " + movieList.get(randomIndex).getTitle() + "\n";
+				movies += i + ". " + movieList.get(randomIndex).toString() + "\n";
 			}
 		}
-		popup.displayText("This is part 1 of a randomly generated list of movies \nIf your number is 1-50, find the one that corresponds to your number\n" + movies);
+		popup.displayText("This is part 1 of a randomly generated list of movies \nIf your number is 1-50, find the one that corresponds to your new number\n" + movies);
 		
 		//2nd 50 movies
 		movies = "";
@@ -297,10 +307,10 @@ public class Chatbot
 			else
 			{
 				randomIndex = (int) (Math.random() * movieList.size());
-				movies += i + ". " + movieList.get(randomIndex).getTitle() + "\n";
+				movies += i + ". " + movieList.get(randomIndex).toString() + "\n";
 			}
 		}
-		popup.displayText("This is part 2 of a randomly generated list of movies \nIf your number is 51-100, find the one that corresponds to your number\n" + movies);
+		popup.displayText("This is part 2 of a randomly generated list of movies \nIf your number is 51-100, find the one that corresponds to your new number\n" + movies);
 		popup.displayText("I'm thinking...");
 		popup.displayText("I'm thinking really hard");
 		popup.displayText("Your movie was " + theirMovie);
@@ -357,6 +367,7 @@ public class Chatbot
 	
 	public LocalTime getCurrentTime()
 	{
+		currentTime = LocalTime.now();
 		return currentTime;
 	}
 	

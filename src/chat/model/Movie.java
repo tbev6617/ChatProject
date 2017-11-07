@@ -14,13 +14,13 @@ public class Movie
 	
 	public Movie(String title)
 	{
-		this.title = title;
-		this.genre = "";
-		this.ratingMPAA = "";
+		this.title = "Title: " + title;
+		this.genre = "-No genre given-";
+		this.ratingMPAA = "PG-13";
 		this.review = "-Movie has not been reviewed-";
-		this.length = 0;
-		this.releaseDate = null;
-		this.starScore = Double.NaN;
+		this.length = 120;
+		this.releaseDate = LocalDate.now();
+		this.starScore = -1;
 	}
 
 	public String getTitle()
@@ -95,6 +95,6 @@ public class Movie
 	
 	public String toString()
 	{
-		return title;
+		return title.substring(7);
 	}
 }
