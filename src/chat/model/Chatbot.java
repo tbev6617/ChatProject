@@ -265,7 +265,8 @@ public class Chatbot
 	}
 	public void showMovieMagic()
 	{
-		popup.displayText("Think of a random two digit number. \nThink of the sum of the two digits and subtract that from the original number to get a new number\n"
+		popup.displayText("Think of a random two digit number.\nBe really paranoid about which number you choose because I can read your mind");
+		popup.displayText("Now let's make it more random\nThink of the sum of the two digits and subtract that from the original number to get a new number\n"
 				+ "ie.\n42 is my number\n4 + 2 = 6\nSo I do 42 - 6 to get a new number");
 		int randomIndex = (int) (Math.random() * movieList.size());
 		String theirMovie = movieList.get(randomIndex).getTitle();
