@@ -112,6 +112,11 @@ public class Chatbot
 		topics[5] = "movies";
 		topics[6] = "cute animal memes";
 	}
+	/**
+	 * Takes the user's text input and gives the chatbot's response as a string
+	 * @param input - What the user typed in
+	 * @return The chatbot's response
+	 */
 	public String processConversation(String input)
 	{
 		//you said
@@ -121,6 +126,10 @@ public class Chatbot
 		response += buildChatbotResponse();
 		return response;
 	}
+	/**
+	 * Gives a random String for the chatbot's response using the chatbot's sentence part arrays
+	 * @return The random response of the chatbot
+	 */
 	private String buildChatbotResponse()
 	{
 		String response = "I ";
@@ -131,15 +140,15 @@ public class Chatbot
 		random = (int) (Math.random() * topics.length);
 		response += " " + topics[random] + ".\n";
 		
-		random= (int) (Math.random() * questions.length);
-		response += questions[random];
-		
 		random = (int)(Math.random() * 2);
 			if (random % 2 == 0)
 		{
 				random = (int)(Math.random() * movieList.size());
-				response += "\n" + movieList.get(random).toString();
+				response += movieList.get(random).toString() + " is a movie\n";
 		}
+			
+		random= (int) (Math.random() * questions.length);
+		response += questions[random];
 		
 		return response;
 	}
@@ -205,7 +214,7 @@ public class Chatbot
 	{
 		for(Movie thisMovie : movieList)
 		{
-			if(thisMovie.getTitle().equals(title))
+			if(thisMovie.toString().equals(title))
 			{
 				return true;
 			}
@@ -279,7 +288,7 @@ public class Chatbot
 		popup.displayText("Now let's make it more random\nThink of the sum of the two digits and subtract that from the original number to get a new number\n"
 				+ "ie.\n42 is my number\n4 + 2 = 6\nSo I do 42 - 6 to get a new number");
 		int randomIndex = (int) (Math.random() * movieList.size());
-		String theirMovie = movieList.get(randomIndex).getTitle();
+		String theirMovie = movieList.get(randomIndex).toString();
 		//1st 50 movies
 		String movies = "";
 		for (int i = 1; i <= 50; i++)

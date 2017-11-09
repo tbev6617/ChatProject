@@ -1,5 +1,9 @@
 package chat.controller;
 import chat.view.PopupDisplay;
+
+import java.util.List;
+import java.util.ArrayList;
+
 import chat.model.Chatbot;
 public class ChatbotController 
 {
@@ -13,56 +17,64 @@ public class ChatbotController
 	}
 	public void start()
 	{
-		popupChat();
-	}
-	public void popupChat ()
-	{
 		String input = popup.getResponse("Ho Ho Ho. Merry Christmas! \nAre you ready to talk to Santa?");
 		
 		while(chatbot.quitChecker(input) == false && chatbot.lengthChecker(input))
 		{
-			if(input.toLowerCase().contains("magic"))
-			{
-				input = popup.getResponse("Magic? I love magic!\nDo you want to see a magic trick?");
-				if (isYes(input))
-				{
-					chatbot.showLennyMagic();
-					input = popup.getResponse("Do you want to see another trick?");
-					if (isYes (input))
-					{
-						chatbot.showMovieMagic();
-					}
-					input = "\"Wow that trick was amazing! My life has been changed by going on this transformative enchanting journey.\"";
-				}
-				else {
-					input = "\"I'm a punk that hates life changing illusions\"";
-				}
-			}
-			else if(chatbot.keyboardMashChecker(input))
-			{
-				popup.displayText("Don't mash your keyboard that's bad for it");
-				input = "\"I'm a punk that mashes keyboards\"";
-			}
-			else
-			{
-				input = popup.getResponse(chatbot.processConversation(input));
-			}
+			input = popupChat(input);
 		}
 		popup.displayText("Goodbye. \nRemember to treat every day like Christmas!");
+	}
+	public String popupChat (String input)
+	{
+		//stop
+		if(input.toLowerCase().contains("magic"))
+		{
+			input = popup.getResponse("Magic? I love magic!\nDo you want to see a magic trick?");
+			if (isYes(input))
+			{
+				chatbot.showLennyMagic();
+				input = popup.getResponse("Do you want to see another trick?");
+				if (isYes (input))
+				{
+					chatbot.showMovieMagic();
+				}
+				input = "\"Wow that trick was amazing! My life has been changed by going on this transformative enchanting journey.\"";
+			}
+			else {
+				input = "\"I'm a punk that hates life changing illusions\"";
+			}
+		}
+		else if(chatbot.keyboardMashChecker(input))
+		{
+			popup.displayText("Don't mash your keyboard that's bad for it");
+			input = "\"I'm a punk that mashes keyboards\"";
+		}
+		else
+		{
+			input = popup.getResponse(chatbot.processConversation(input));
+		}
+		return input;
 	}
 	public boolean isYes (String answer)
 	{
 		answer = answer.toLowerCase();
-		String[] yesArray = new String[7];
-		yesArray[0] = "yes";
-		yesArray[1] = "yep";
-		yesArray[2] = "yeah";
-		yesArray[3] = "absolutely";
-		yesArray[4] = "definitely";
-		yesArray[5] = "for sure";
-		yesArray[6] = "yass";
+		List<String> yesList = new ArrayList<String>();
+		yesList.add("yes");
+		yesList.add("yep");
+		yesList.add("yeah");
+		yesList.add("yea");
+		yesList.add("yep");
+		yesList.add("yup");
+		yesList.add("yass");
+		yesList.add("sure");
+		yesList.add("yeet");
+		yesList.add("yeh");
+		yesList.add("uh huh");
+		yesList.add("ya");
+		yesList.add("si");
 		
-		for (String item : yesArray)
+		for (String item : yesList)
 		{
 			if(answer.contains(item)) {
 				return true;
