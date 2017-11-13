@@ -1,6 +1,6 @@
 package chat.controller;
 
-public class ChatBotRunner 
+public class ChatbotRunner 
 {
 	public static void main(String[] args) 
 	{
