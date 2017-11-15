@@ -7,17 +7,18 @@ public class ChatFrame extends JFrame
 {
 
 	private ChatbotController appController;
+	//private ChatPanel appPanel;
 	
 	public ChatFrame(ChatbotController appController)
 	{
 		super();
 		this.appController = appController;
-		
+		//appPanel = new ChatPanel(appController);
 		setupFrame();
 	}
 	private void setupFrame()
 	{
-		this.setContentPane(firstPanel);
+		//this.setContentPane(appPanel);
 		this.setTitle("Color Changer");
 		this.setSize(500, 500);
 		this.setResizable(true);
