@@ -1,19 +1,22 @@
 package chat.controller;
-import chat.view.PopupDisplay;
 
+import chat.view.*;
 import java.util.List;
 import java.util.ArrayList;
-
 import chat.model.Chatbot;
+
 public class ChatbotController 
 {
 	private PopupDisplay popup;
 	private Chatbot chatbot;
+	private ChatFrame appFrame;
 	
 	public ChatbotController()
 	{
 		chatbot = new Chatbot("@Santa");
+		//View initialized after model
 		popup = new PopupDisplay();
+		appFrame = new ChatFrame(this);
 	}
 	public void start()
 	{

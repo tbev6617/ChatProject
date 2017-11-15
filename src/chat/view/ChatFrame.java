@@ -19,7 +19,7 @@ public class ChatFrame extends JFrame
 	private void setupFrame()
 	{
 		//this.setContentPane(appPanel);
-		this.setTitle("Color Changer");
+		this.setTitle("Chat Project");
 		this.setSize(500, 500);
 		this.setResizable(true);
 		this.setVisible(true);
