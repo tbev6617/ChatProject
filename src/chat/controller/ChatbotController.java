@@ -20,13 +20,13 @@ public class ChatbotController
 	}
 	public void start()
 	{
-		String input = popup.getResponse("Ho Ho Ho. Merry Christmas! \nAre you ready to talk to Santa?");
-		
-		while(chatbot.quitChecker(input) == false && chatbot.lengthChecker(input))
-		{
-			input = popupChat(input);
-		}
-		popup.displayText("Goodbye. \nRemember to treat every day like Christmas!");
+//		String input = popup.getResponse("Ho Ho Ho. Merry Christmas! \nAre you ready to talk to Santa?");
+//		
+//		while(chatbot.quitChecker(input) == false && chatbot.lengthChecker(input))
+//		{
+//			input = popupChat(input);
+//		}
+//		popup.displayText("Goodbye. \nRemember to treat every day like Christmas!");
 	}
 	public String popupChat (String input)
 	{
