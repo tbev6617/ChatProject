@@ -20,45 +20,28 @@ public class ChatbotController
 	}
 	public void start()
 	{
-//		String input = popup.getResponse("Ho Ho Ho. Merry Christmas! \nAre you ready to talk to Santa?");
-//		
-//		while(chatbot.quitChecker(input) == false && chatbot.lengthChecker(input))
-//		{
-//			input = popupChat(input);
-//		}
-//		popup.displayText("Goodbye. \nRemember to treat every day like Christmas!");
+		popup.displayText("Welcome to Chatbot");
+		
 	}
-	public String popupChat (String input)
+	public String interactWithChatbot(String input)
 	{
-		//stop
-		if(input.toLowerCase().contains("magic"))
+		if(chatbot.quitChecker(input))
 		{
-			input = popup.getResponse("Magic? I love magic!\nDo you want to see a magic trick?");
-			if (isYes(input))
-			{
-				chatbot.showLennyMagic();
-				input = popup.getResponse("Do you want to see another trick?");
-				if (isYes (input))
-				{
-					chatbot.showMovieMagic();
-				}
-				input = "\"Wow that trick was amazing! My life has been changed by going on this transformative enchanting journey.\"";
-			}
-			else {
-				input = "\"I'm a punk that hates life changing illusions\"";
-			}
+			close();
 		}
-		else if(chatbot.keyboardMashChecker(input))
-		{
-			popup.displayText("Don't mash your keyboard that's bad for it");
-			input = "\"I'm a punk that mashes keyboards\"";
-		}
-		else
-		{
-			input = popup.getResponse(chatbot.processConversation(input));
-		}
-		return input;
+		
+		//NOTES - In a return type method start with declaring a valid value and end with returning that variable
+		String response = "";
+		response = chatbot.processConversation(input);
+		
+		return response;
 	}
+	private void close()
+	{
+		popup.displayText("Goodbye. Remember to treat every day like Christmas");
+		System.exit(0);
+	}
+	
 	public boolean isYes (String answer)
 	{
 		answer = answer.toLowerCase();
@@ -73,7 +56,7 @@ public class ChatbotController
 		yesList.add("sure");
 		yesList.add("yeet");
 		yesList.add("yeh");
-		yesList.add("uh huh");
+		yesList.add("ye");
 		yesList.add("ya");
 		yesList.add("si");
 		
