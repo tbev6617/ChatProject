@@ -7,6 +7,10 @@ import chat.model.Movie;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ *	The Chatbot class
+ *	@author tbev6617
+ */
 public class Chatbot
 {
 	private List<Movie> movieList;
@@ -43,7 +47,9 @@ public class Chatbot
 		buildMovieList();
 		buildTopics();
 	}
-
+	/**
+	 * Builds the Chatbot's verb array
+	 */
 	private void buildVerbs()
 	{
 		verbs[0] = "like";
@@ -53,6 +59,9 @@ public class Chatbot
 		verbs[4] = "love";
 		verbs[5] = "am watching";
 	}
+	/**
+	 * Builds the Chatbot's movie List
+	 */
 	private void buildMovieList()
 	{
 		movieList.add(new Movie("Spiderman"));
@@ -65,7 +74,9 @@ public class Chatbot
 		movieList.add(new Movie("The Lego Movie"));
 		movieList.add(new Movie("Toy Story"));
 	}
-	
+	/**
+	 * Builds the Chatbot's shopping List
+	 */
 	private void buildShoppingList()
 	{
 		shoppingList.add("protein");
@@ -80,7 +91,9 @@ public class Chatbot
 		shoppingList.add("oranges");
 		shoppingList.add("coal");
 	}
-	
+	/**
+	 * Builds the Chatbot's cute Animal Memes list
+	 */
 	private void buildCuteAnimals()
 	{
 		cuteAnimalMemes.add("otter");
@@ -88,7 +101,9 @@ public class Chatbot
 		cuteAnimalMemes.add("kittie");
 		cuteAnimalMemes.add("floofer");
 	}
-	
+	/**
+	 * Build's the Chatbot's questions array
+	 */
 	private void buildQuestions()
 	{
 		questions[0] = "What is your name?";
@@ -102,6 +117,9 @@ public class Chatbot
 		questions[8] = "What is your favorite holiday?";
 		questions[9] = "Do you like elves?";
 	}
+	/**
+	 * Builds the Chatbot's topics array
+	 */
 	private void buildTopics()
 	{
 		topics[0] = "Christmas";
@@ -113,9 +131,9 @@ public class Chatbot
 		topics[6] = "cute animal memes";
 	}
 	/**
-	 * Takes the user's text input and gives the chatbot's response as a string
+	 * Takes the user's text input and gives the Chatbot's response as a string
 	 * @param input - What the user typed in
-	 * @return The chatbot's response
+	 * @return The Chatbot's response
 	 */
 	public String processConversation(String input)
 	{
@@ -127,8 +145,8 @@ public class Chatbot
 		return response;
 	}
 	/**
-	 * Gives a random String for the chatbot's response using the chatbot's sentence part arrays
-	 * @return The random response of the chatbot
+	 * Gives a random String for the Chatbot's response using the chatbot's sentence parts
+	 * @return The generated response of the Chatbot
 	 */
 	private String buildChatbotResponse()
 	{
@@ -152,6 +170,11 @@ public class Chatbot
 		
 		return response;
 	}
+	/**
+	 * 
+	 * @param input - the String being checked (usually the user's response)
+	 * @return a boolean of whether the response was at least 2 characters long
+	 */
 	public boolean lengthChecker(String input)
 	{
 		if (input != null && input.length() >= 2)
@@ -164,7 +187,11 @@ public class Chatbot
 	{
 		return false;
 	}
-	
+	/**
+	 * Checks to make sure the username is valid (starts with a @ but has no @'s after that)
+	 * @param input - the user name being checked
+	 * @return boolean about whether the username was valid (starts with a @ but has no @'s after that)
+	 */
 	public boolean userNameChecker(String input)
 	{
 		if(input == null || input.length() == 0 || !input.substring(0, 1).equals("@"))
