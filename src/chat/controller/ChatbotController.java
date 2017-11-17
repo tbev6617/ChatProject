@@ -20,7 +20,7 @@ public class ChatbotController
 	}
 	public void start()
 	{
-		popup.displayText("Welcome to Chatbot");
+		//popup.displayText("Welcome to Chatbot");
 		
 	}
 	public String interactWithChatbot(String input)
@@ -29,6 +29,10 @@ public class ChatbotController
 		{
 			close();
 		}
+//		if(input..toLowerCase()contains("magic"))
+//		{
+//			
+//		}
 		
 		//NOTES - In a return type method start with declaring a valid value and end with returning that variable
 		String response = "";
