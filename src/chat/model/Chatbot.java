@@ -217,7 +217,7 @@ public class Chatbot
 	{
 		for(String item : cuteAnimalMemes)
 		{
-			if(input.equals(item)) 
+			if(input.toLowerCase().equals(item)) 
 			{
 				return true;
 			}
@@ -269,7 +269,7 @@ public class Chatbot
 	
 	public boolean keyboardMashChecker(String sample)
 	{
-		//The word Were can be incorrectly shown as mash so I check for that
+		//The word Were can be incorrectly shown as mash so I check for that first
 		if(sample.toLowerCase().contains("were"))
 		{
 			return false;
@@ -282,12 +282,12 @@ public class Chatbot
 			for(int i = 0; i < keyboard.length() - 2; i++)
 			{
 				String keys = keyboard.substring(i, i + 3);
-				//check forward
+				//check forwards
 				if(keys.equals(sampleKeys.toLowerCase()))
 				{
 					return true;
 				}
-				//check backward
+				//check backwards
 				keys = keys.substring(2, 3) + keys.substring(1, 2) + keys.substring(0, 1);
 				if(keys.equals(sampleKeys.toLowerCase()))
 				{
@@ -296,6 +296,34 @@ public class Chatbot
 			}
 		}
 		return false;
+	}
+	public boolean yesChecker(String answer)
+	{
+		{
+			answer = answer.toLowerCase();
+			List<String> yesList = new ArrayList<String>();
+			yesList.add("yes");
+			yesList.add("yep");
+			yesList.add("yeah");
+			yesList.add("yea");
+			yesList.add("yep");
+			yesList.add("yup");
+			yesList.add("yass");
+			yesList.add("sure");
+			yesList.add("yeet");
+			yesList.add("yeh");
+			yesList.add("ye");
+			yesList.add("ya");
+			yesList.add("si");
+			
+			for (String item : yesList)
+			{
+				if(answer.contains(item)) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 	public void showLennyMagic()
 	{

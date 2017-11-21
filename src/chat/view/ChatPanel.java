@@ -27,11 +27,12 @@ public class ChatPanel extends JPanel
 		this.appController = appController;
 		
 		//initialize GUI data members
+		checkerButton = new JButton("CHECK");
 		chatButton = new JButton("ENTER");
 		chatArea = new JTextArea(10,25);
 		inputField = new JTextField(25);
 		appLayout = new SpringLayout();
-		
+		chatArea.setText("Oh my lanta! You're speaking with Santa!");
 		setupPanel();
 		setupLayout();
 		setupListeners();
@@ -39,8 +40,9 @@ public class ChatPanel extends JPanel
 	
 	private void setupPanel()
 	{
-		this.setBackground(Color.black);
+		this.setBackground(new Color(230, 20, 20));
 		this.setLayout(appLayout);
+		this.add(checkerButton);
 		this.add(chatButton);
 		this.add(inputField);
 		this.add(chatArea);
@@ -58,6 +60,8 @@ public class ChatPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.NORTH, chatArea, 20, SpringLayout.NORTH, this);
 		appLayout.putConstraint(SpringLayout.WEST, chatArea, 25, SpringLayout.WEST, this);
 		appLayout.putConstraint(SpringLayout.EAST, chatArea, -25, SpringLayout.EAST, this);
+		appLayout.putConstraint(SpringLayout.WEST, checkerButton, 0, SpringLayout.WEST, chatButton);
+		appLayout.putConstraint(SpringLayout.SOUTH, checkerButton, -5, SpringLayout.NORTH, chatButton);
 	}
 	
 	private void setupListeners()
@@ -70,17 +74,19 @@ public class ChatPanel extends JPanel
 				String userText = inputField.getText();
 				String displayText = appController.interactWithChatbot(userText);
 				//chatArea.append(displayText);
-				if(userText.contains("magic"))
-				{
-					chatArea.setText("You said: " + userText + "\nI love magic! \nDo you want to see a magic trick");
-					userText = inputField.getText();
-					if appController.isYes(answer);
-				}
-				else{
 					chatArea.setText(displayText + "\n");
 					inputField.setText("");
-				}
 			}
+		});
+		checkerButton.addActionListener(new ActionListener()
+		{	
+			public void actionPerformed(ActionEvent click)
+			{
+				String usertext = inputField.getText();
+				String displayText = appController.useCheckers(usertext);
+				chatArea.append("\n" + displayText);
+				inputField.setText("");
+			}	
 		});
 	}
 }

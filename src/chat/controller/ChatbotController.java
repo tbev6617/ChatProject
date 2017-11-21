@@ -24,7 +24,7 @@ public class ChatbotController
 	}
 	public void start()
 	{
-		//popup.displayText("Welcome to Chatbot");
+		popup.displayText("Ho Ho Ho! Get ready to talk to Santa!");
 		
 	}
 	public String interactWithChatbot(String input)
@@ -49,31 +49,59 @@ public class ChatbotController
 		popup.displayText("Goodbye. Remember to treat every day like Christmas");
 		System.exit(0);
 	}
-	
-	public boolean isYes (String answer)
+	public String useCheckers(String text)
 	{
-		answer = answer.toLowerCase();
-		List<String> yesList = new ArrayList<String>();
-		yesList.add("yes");
-		yesList.add("yep");
-		yesList.add("yeah");
-		yesList.add("yea");
-		yesList.add("yep");
-		yesList.add("yup");
-		yesList.add("yass");
-		yesList.add("sure");
-		yesList.add("yeet");
-		yesList.add("yeh");
-		yesList.add("ye");
-		yesList.add("ya");
-		yesList.add("si");
+		String response = "";
 		
-		for (String item : yesList)
+		if(chatbot.contentChecker(text))
 		{
-			if(answer.contains(item)) {
-				return true;
-			}
+			response += "This text matches the special content\n";
 		}
-		return false;
+		if(chatbot.cuteAnimalMemeChecker(text))
+		{
+			response += "This text matches cute animal memes\n";
+		}
+		if(chatbot.userNameChecker(text))
+		{
+			response += "This text is a valid username\n";
+		}
+		if(chatbot.shoppingListChecker(text))
+		{
+			response += "This text matches a valid shopping list\n";
+		}
+		if(chatbot.movieTitleChecker(text))
+		{
+			response += "This text matches a valid movie\n";
+		}
+		if(chatbot.movieGenreChecker(text))
+		{
+			response += "This text matches a valid movie genre\n";
+		}
+		if(chatbot.keyboardMashChecker(text))
+		{
+			response += "Don't mash your keyboard!";
+		}
+		if(chatbot.htmlTagChecker(text))
+		{
+			response += "This text matches an html tag";
+		}
+		if(chatbot.yesChecker(text))
+		{
+			response += "This text has an affirmative answer";
+		}
+		//Checked with all checkers except length and quit checker
+		return response;
+	}
+	public Chatbot getChatbot()
+	{
+		return chatbot;
+	}
+	public PopupDisplay getDisplay()
+	{
+		return popup;
+	}
+	public ChatFrame getChatFrame()
+	{
+		return appFrame;
 	}
 }
