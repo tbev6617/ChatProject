@@ -67,11 +67,19 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				String usertext = inputField.getText();
-				String displayText = appController.interactWithChatbot(usertext);
+				String userText = inputField.getText();
+				String displayText = appController.interactWithChatbot(userText);
 				//chatArea.append(displayText);
-				chatArea.setText(displayText + "\n");
-				inputField.setText("");
+				if(userText.contains("magic"))
+				{
+					chatArea.setText("You said: " + userText + "\nI love magic! \nDo you want to see a magic trick");
+					userText = inputField.getText();
+					if appController.isYes(answer);
+				}
+				else{
+					chatArea.setText(displayText + "\n");
+					inputField.setText("");
+				}
 			}
 		});
 	}

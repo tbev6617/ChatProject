@@ -4,7 +4,11 @@ import chat.view.*;
 import java.util.List;
 import java.util.ArrayList;
 import chat.model.Chatbot;
-
+/**
+ * 
+ * @author Tyler Bevan
+ * @version 11/21/17
+ */
 public class ChatbotController 
 {
 	private PopupDisplay popup;
