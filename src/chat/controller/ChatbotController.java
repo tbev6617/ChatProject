@@ -38,7 +38,7 @@ public class ChatbotController
 //			
 //		}
 		
-		//NOTES - In a return type method start with declaring a valid value and end with returning that variable
+		//In a return type method start with declaring a valid value and end with returning that variable
 		String response = "";
 		response = chatbot.processConversation(input);
 		
