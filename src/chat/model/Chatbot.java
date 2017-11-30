@@ -202,6 +202,27 @@ public class Chatbot
 	}
 	public boolean htmlTagChecker(String input)
 	{
+		input.equals(input.toUpperCase());
+//		if (input.contains("<") && input.indexOf("<") < input.indexOf(">"))
+//		{
+//			String tag = input.substring(input.indexOf("<"), input.indexOf(">"));
+//			if (input.indexOf(tag) < input.lastIndexOf(tag))
+//			{
+//				return true;
+//			}
+//		}
+		if (input.contains("<P>") || input.contains("<BR>"))
+		{
+			return true;
+		}
+		if (input.contains("HREF") && !input.contains("="))
+		{
+			return false;
+		}
+		if (input.indexOf(">") < input.lastIndexOf(">") && input.indexOf("<") < input.lastIndexOf("<"))
+		{
+			return true;
+		}
 		return false;
 	}
 	/**
