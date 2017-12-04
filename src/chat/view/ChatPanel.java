@@ -36,7 +36,7 @@ public class ChatPanel extends JPanel
 		chatArea = new JTextArea(10,25);
 		inputField = new JTextField(25);
 		appLayout = new SpringLayout();
-		chatArea.setText("Oh my lanta! You're speaking with Santa!");
+		chatArea.setText("Oh my lanta! You're speaking with Santa!\n");
 		chatScrollPane = new JScrollPane();
 		
 		//call helper methods
@@ -53,7 +53,7 @@ public class ChatPanel extends JPanel
 		this.add(checkerButton);
 		this.add(chatButton);
 		this.add(inputField);
-		this.add(chatArea);
+		this.add(chatScrollPane);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
 		infoLabel = new JLabel("Type to chat with Santa");
@@ -64,9 +64,9 @@ public class ChatPanel extends JPanel
 	{
 		appLayout.putConstraint(SpringLayout.NORTH, inputField, 0, SpringLayout.NORTH, chatButton);
 		appLayout.putConstraint(SpringLayout.SOUTH, chatButton, -21, SpringLayout.SOUTH, this);
-		appLayout.putConstraint(SpringLayout.NORTH, chatArea, 20, SpringLayout.NORTH, this);
-		appLayout.putConstraint(SpringLayout.WEST, chatArea, 25, SpringLayout.WEST, this);
-		appLayout.putConstraint(SpringLayout.EAST, chatArea, -25, SpringLayout.EAST, this);
+		appLayout.putConstraint(SpringLayout.NORTH, chatScrollPane, 20, SpringLayout.NORTH, this);
+		appLayout.putConstraint(SpringLayout.WEST, chatScrollPane, 25, SpringLayout.WEST, this);
+		appLayout.putConstraint(SpringLayout.EAST, chatScrollPane, -25, SpringLayout.EAST, this);
 		appLayout.putConstraint(SpringLayout.WEST, checkerButton, 0, SpringLayout.WEST, chatButton);
 		appLayout.putConstraint(SpringLayout.SOUTH, checkerButton, -5, SpringLayout.NORTH, chatButton);
 		appLayout.putConstraint(SpringLayout.NORTH, infoLabel, 5, SpringLayout.NORTH, checkerButton);
@@ -86,8 +86,7 @@ public class ChatPanel extends JPanel
 				String userText = inputField.getText();
 				String displayText = appController.interactWithChatbot(userText);
 				chatArea.append(displayText);
-					//chatArea.setText(displayText + "\n");
-					inputField.setText("");
+				inputField.setText("");
 			}
 		});
 		checkerButton.addActionListener(new ActionListener()
@@ -103,6 +102,8 @@ public class ChatPanel extends JPanel
 	}
 	public void setupScrollPane()
 	{
-		
+		chatScrollPane.setViewportView(chatArea);
+		chatScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		chatScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 	}
 }

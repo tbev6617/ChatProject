@@ -167,25 +167,25 @@ public class Chatbot
 			
 		random= (int) (Math.random() * questions.length);
 		response += questions[random];
-		int followup = (int)(Math.random() * 5);
+//		int followup = (int)(Math.random() * 5);
+//		
+//		switch(followup)
+//		{
+//		case 0:
+//			response += followUps[0] + "\n";
+//			break;
+//		case 3:
+//			response += followUps[1] + "\n";
+//		case 1:
+//			response += followUps[2] + "\n";
+//			break;
+//		default:
+//			response += followUps[4] + "\n";
+//			response += followUps[3] + "\n";
+//			break;
+//		}
 		
-		switch(followup)
-		{
-		case 0:
-			response += followUps[0] + "\n";
-			break;
-		case 3:
-			response += followUps[1] + "\n";
-		case 1:
-			response += followUps[2] + "\n";
-			break;
-		default:
-			response += followUps[4] + "\n";
-			response += followUps[3] + "\n";
-			break;
-		}
-		
-		return response;
+		return response + "\n";
 	}
 	/**
 	 * 
