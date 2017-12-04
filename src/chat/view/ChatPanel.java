@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,9 +22,10 @@ public class ChatPanel extends JPanel
 	private JTextArea chatArea;
 	private SpringLayout appLayout;
 	private JLabel infoLabel;
+	private JScrollPane chatScrollPane;
+	
 	
 	public ChatPanel(ChatbotController appController)
-
 	{
 		super();
 		this.appController = appController;
@@ -34,10 +36,11 @@ public class ChatPanel extends JPanel
 		chatArea = new JTextArea(10,25);
 		inputField = new JTextField(25);
 		appLayout = new SpringLayout();
-		appLayout.putConstraint(SpringLayout.WEST, inputField, 25, SpringLayout.WEST, this);
-		appLayout.putConstraint(SpringLayout.EAST, inputField, -5, SpringLayout.WEST, chatButton);
-		appLayout.putConstraint(SpringLayout.EAST, chatButton, -25, SpringLayout.EAST, this);
 		chatArea.setText("Oh my lanta! You're speaking with Santa!");
+		chatScrollPane = new JScrollPane();
+		
+		//call helper methods
+		setupScrollPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
@@ -68,6 +71,9 @@ public class ChatPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.SOUTH, checkerButton, -5, SpringLayout.NORTH, chatButton);
 		appLayout.putConstraint(SpringLayout.NORTH, infoLabel, 5, SpringLayout.NORTH, checkerButton);
 		appLayout.putConstraint(SpringLayout.WEST, infoLabel, 0, SpringLayout.WEST, inputField);
+		appLayout.putConstraint(SpringLayout.WEST, inputField, 25, SpringLayout.WEST, this);
+		appLayout.putConstraint(SpringLayout.EAST, inputField, -5, SpringLayout.WEST, chatButton);
+		appLayout.putConstraint(SpringLayout.EAST, chatButton, -25, SpringLayout.EAST, this);
 	}
 	
 	private void setupListeners()
@@ -79,8 +85,8 @@ public class ChatPanel extends JPanel
 			{
 				String userText = inputField.getText();
 				String displayText = appController.interactWithChatbot(userText);
-				//chatArea.append(displayText);
-					chatArea.setText(displayText + "\n");
+				chatArea.append(displayText);
+					//chatArea.setText(displayText + "\n");
 					inputField.setText("");
 			}
 		});
@@ -94,5 +100,9 @@ public class ChatPanel extends JPanel
 				inputField.setText("");
 			}	
 		});
+	}
+	public void setupScrollPane()
+	{
+		
 	}
 }
