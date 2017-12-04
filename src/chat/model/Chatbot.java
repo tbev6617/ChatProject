@@ -138,7 +138,9 @@ public class Chatbot
 	public String processConversation(String input)
 	{
 		//you said
-		String response = "You said: " + input + "\n";
+		String response = "";
+		response += currentTime.getHour() + ":" + currentTime.getMinute() + " \n";
+		response += "You said: " + input + "\n";
 		
 		//I say and give question
 		response += buildChatbotResponse();
