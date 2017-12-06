@@ -20,7 +20,7 @@ public class ChatFrame extends JFrame
 	{
 		this.setContentPane(appPanel);
 		this.setTitle("Santa Bot");
-		this.setSize(500, 500);
+		this.setSize(500, 300);
 		this.setResizable(true);
 		this.setVisible(true);
 	}

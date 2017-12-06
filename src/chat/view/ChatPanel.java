@@ -36,7 +36,7 @@ public class ChatPanel extends JPanel
 		chatArea = new JTextArea(10,25);
 		inputField = new JTextField(25);
 		appLayout = new SpringLayout();
-		chatArea.setText("Oh my lanta! You're speaking with Santa!\n");
+		chatArea.setText("Ho Ho Ho! You're speaking with Santa!\n");
 		chatScrollPane = new JScrollPane();
 		
 		//call helper methods
@@ -56,6 +56,7 @@ public class ChatPanel extends JPanel
 		this.add(chatScrollPane);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
+		chatArea.setDisabledTextColor(Color.black);
 		infoLabel = new JLabel("Type to chat with Santa");
 		this.add(infoLabel);
 	}
@@ -84,9 +85,18 @@ public class ChatPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String userText = inputField.getText();
-				String displayText = appController.interactWithChatbot(userText);
-				chatArea.append(displayText);
 				inputField.setText("");
+				if(userText.toLowerCase().contains("magic"))
+				{
+					chatArea.append("\nYou said: \"Something about magic\"\nI LOVE MAGIC\nDid you like my magic?\n");
+					appController.showLennyMagic();
+					appController.showMovieMagic();
+				}
+				else
+				{
+					String displayText = appController.interactWithChatbot(userText);
+					chatArea.append("\n" + displayText);
+				}
 			}
 		});
 		checkerButton.addActionListener(new ActionListener()

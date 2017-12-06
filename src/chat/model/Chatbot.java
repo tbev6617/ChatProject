@@ -24,7 +24,6 @@ public class Chatbot
 	private String content;
 	private String intro;
 	private LocalTime currentTime;
-	private PopupDisplay popup;
 	public Chatbot(String username)
 	{
 		this.movieList = new ArrayList<Movie>();
@@ -38,7 +37,6 @@ public class Chatbot
 		this.topics = new String[7];;
 		this.verbs = new String[6];
 		this.followUps = new String[5];
-		popup = new PopupDisplay();
 		
 		buildVerbs();
 		buildShoppingList();
@@ -53,7 +51,7 @@ public class Chatbot
 	private void buildVerbs()
 	{
 		verbs[0] = "like";
-		verbs[1] = "dislike";
+		verbs[1] = "enjoy";
 		verbs[2] = "am indecisive about";
 		verbs[3] = "am thinking about";
 		verbs[4] = "love";
@@ -107,15 +105,15 @@ public class Chatbot
 	private void buildQuestions()
 	{
 		questions[0] = "What is your name?";
-		questions[1] = "What is your quest?";
+		questions[1] = "What do you want for Christmas?";
 		questions[2] = "What is your favorite color?";
-		questions[3] = "Do you like movies?";
+		questions[3] = "Who is your favorite elf?";
 		questions[4] = "What is your favorite movie?";
-		questions[5] = "Do you like shopping?";
-		questions[6] = "Do you like cute animal memes?";
+		questions[5] = "What is your favorite food?";
+		questions[6] = "What is the name of your rubber duck?";
 		questions[7] = "Have you been a good kid this year?";
 		questions[8] = "What is your favorite holiday?";
-		questions[9] = "Do you like elves?";
+		questions[9] = "Who is your favorite Reindeer?";
 	}
 	/**
 	 * Builds the Chatbot's topics array
@@ -137,10 +135,16 @@ public class Chatbot
 	 */
 	public String processConversation(String input)
 	{
+		String minute = Integer.toString(currentTime.now().getMinute());
+		while(minute.length() < 2)
+		{
+			minute = "0" + minute;
+		}
+		
 		//you said
 		String response = "";
-		response += currentTime.getHour() + ":" + currentTime.getMinute() + " \n";
-		response += "You said: " + input + "\n";
+		response += currentTime.now().getHour() + ":" + minute + " \n";
+		response += "You said: " + input;
 		
 		//I say and give question
 		response += buildChatbotResponse();
@@ -152,7 +156,7 @@ public class Chatbot
 	 */
 	private String buildChatbotResponse()
 	{
-		String response = "I ";
+		String response = "\nI ";
 		
 		int random = (int) (Math.random() * verbs.length);
 		response += verbs[random];
@@ -257,7 +261,7 @@ public class Chatbot
 	{
 		for(String item : cuteAnimalMemes)
 		{
-			if(input.toLowerCase().equals(item)) 
+			if(input.toLowerCase().contains(item)) 
 			{
 				return true;
 			}
@@ -364,60 +368,6 @@ public class Chatbot
 			}
 			return false;
 		}
-	}
-	public void showLennyMagic()
-	{
-		popup.displayText("¯\\_(ツ)_/¯\nThis is shrug face");
-		popup.displayText("¯\\_(ツ)_/¯\nHe is my assistant");
-		popup.displayText("¯\\_(ツ)_/¯\nLet's make him disappear");
-		popup.displayText("━☆ﾟ.*･｡ﾟ¯\\_(ツ)_/¯\nLet's make him disappear.");
-		popup.displayText("━☆ﾟ.'･*ﾟ{･POOF.}\nLet's make him disappear.");
-		popup.displayText("\n");
-		popup.displayText("Where did he go?");
-		popup.displayText("✧･ﾟ: *✧･ﾟ:*¯\\_(ツ)_/¯*:･ﾟ✧*:･ﾟ✧\nABRACADABRA!");
-		
-	}
-	public void showMovieMagic()
-	{
-		popup.displayText("Think of a random two digit number.\nBe really paranoid about which number you choose because I can read your mind");
-		popup.displayText("Now let's make it more random\nThink of the sum of the two digits and subtract that from the original number to get a new number\n"
-				+ "ie.\n42 is my number\n4 + 2 = 6\nSo I do 42 - 6 to get a new number");
-		int randomIndex = (int) (Math.random() * movieList.size());
-		String theirMovie = movieList.get(randomIndex).toString();
-		//1st 50 movies
-		String movies = "";
-		for (int i = 1; i <= 50; i++)
-		{
-			if(i % 9 == 0)
-			{
-				movies += i + ". " + theirMovie + "\n";
-			}
-			else
-			{
-				randomIndex = (int) (Math.random() * movieList.size());
-				movies += i + ". " + movieList.get(randomIndex).toString() + "\n";
-			}
-		}
-		popup.displayText("This is part 1 of a randomly generated list of movies \nIf your number is 1-50, find the one that corresponds to your new number\n" + movies);
-		
-		//2nd 50 movies
-		movies = "";
-		for (int i = 51; i <= 100; i++)
-		{
-			if(i % 9 == 0)
-			{
-				movies += i + ". " + theirMovie + "\n";
-			}
-			else
-			{
-				randomIndex = (int) (Math.random() * movieList.size());
-				movies += i + ". " + movieList.get(randomIndex).toString() + "\n";
-			}
-		}
-		popup.displayText("This is part 2 of a randomly generated list of movies \nIf your number is 51-100, find the one that corresponds to your new number\n" + movies);
-		popup.displayText("I'm thinking...");
-		popup.displayText("I'm thinking really hard");
-		popup.displayText("Your movie was " + theirMovie);
 	}
 	public List<Movie> getMovieList()
 	{
