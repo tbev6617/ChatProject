@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import chat.model.Chatbot;
 /**
- * 
+ * The controller class
  * @author Tyler Bevan
  * @version 11/21/17
  */
@@ -14,7 +14,10 @@ public class ChatbotController
 	private PopupDisplay popup;
 	private Chatbot chatbot;
 	private ChatFrame appFrame;
-	
+	/**
+	 * Constructor for the ChatbotController 
+	 * Initializes all data members
+	 */
 	public ChatbotController()
 	{
 		chatbot = new Chatbot("@Santa");
@@ -22,11 +25,20 @@ public class ChatbotController
 		popup = new PopupDisplay();
 		appFrame = new ChatFrame(this);
 	}
+	/**
+	 * Normally pops up an intro but I found that annoying and commented that out
+	 */
 	public void start()
 	{
-		//popup.displayText("Ho Ho Ho! Get ready to talk to Santa!");
+		//popup.displayText("Ho Ho Ho! Get ready to talk to " + chatbot);
 		
 	}
+	/**
+	 * Returns the outcome of processConversation with input as a parameter
+	 * If the string is quit close the program.
+	 * @param input The string that is sent to processConversation
+	 * @return The string after it was processed by Chatbot
+	 */
 	public String interactWithChatbot(String input)
 	{
 		if(chatbot.quitChecker(input))
@@ -44,11 +56,19 @@ public class ChatbotController
 		
 		return response;
 	}
+	/**
+	 * Closes the program and sends a jolly goodbye message
+	 */
 	private void close()
 	{
 		popup.displayText("Goodbye. Remember to treat every day like Christmas");
 		System.exit(0);
 	}
+	/**
+	 * Checks the input against almost every checker
+	 * @param text The text that is checked by the checkers
+	 * @return a string describing which checkers returned true
+	 */
 	public String useCheckers(String text)
 	{
 		String response = "";
@@ -97,6 +117,9 @@ public class ChatbotController
 		//Checked with all checkers except length and quit checker
 		return response;
 	}
+	/**
+	 * Magic minigames that I programmed when I had free time activated whenever the user types "magic", just ignore them
+	 */
 	public void showLennyMagic()
 	{
 		popup.displayText("¯\\_(ツ)_/¯\nThis is shrug face");
@@ -151,6 +174,10 @@ public class ChatbotController
 		popup.displayText("I'm thinking really hard");
 		popup.displayText("Your movie was " + theirMovie);
 	}
+	/**
+	 * Getters
+	 * @return the variables specified in the function's name
+	 */
 	public Chatbot getChatbot()
 	{
 		return chatbot;

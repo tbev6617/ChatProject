@@ -1,11 +1,9 @@
 package chat.model;
 
 import java.util.List;
-import chat.view.PopupDisplay;
-import chat.model.Movie;
-
-import java.time.LocalTime;
 import java.util.ArrayList;
+import chat.model.Movie;
+import java.time.LocalTime;
 
 /**
  *	The Chatbot class
@@ -24,6 +22,12 @@ public class Chatbot
 	private String content;
 	private String intro;
 	private LocalTime currentTime;
+	
+	/**
+	 * Constructor for the ChatbotController 
+	 * Initializes all data members
+	 * @param username The name that is sent in to give to the chatbot
+	 */
 	public Chatbot(String username)
 	{
 		this.movieList = new ArrayList<Movie>();
@@ -45,6 +49,7 @@ public class Chatbot
 		buildMovieList();
 		buildTopics();
 	}
+	
 	/**
 	 * Builds the Chatbot's verb array
 	 */
@@ -57,6 +62,7 @@ public class Chatbot
 		verbs[4] = "love";
 		verbs[5] = "am watching";
 	}
+	
 	/**
 	 * Builds the Chatbot's movie List
 	 */
@@ -72,6 +78,7 @@ public class Chatbot
 		movieList.add(new Movie("The Lego Movie"));
 		movieList.add(new Movie("Toy Story"));
 	}
+	
 	/**
 	 * Builds the Chatbot's shopping List
 	 */
@@ -89,6 +96,7 @@ public class Chatbot
 		shoppingList.add("oranges");
 		shoppingList.add("coal");
 	}
+	
 	/**
 	 * Builds the Chatbot's cute Animal Memes list
 	 */
@@ -99,6 +107,7 @@ public class Chatbot
 		cuteAnimalMemes.add("kittie");
 		cuteAnimalMemes.add("floofer");
 	}
+	
 	/**
 	 * Build's the Chatbot's questions array
 	 */
@@ -115,6 +124,7 @@ public class Chatbot
 		questions[8] = "What is your favorite holiday?";
 		questions[9] = "Who is your favorite Reindeer?";
 	}
+	
 	/**
 	 * Builds the Chatbot's topics array
 	 */
@@ -128,9 +138,10 @@ public class Chatbot
 		topics[5] = "movies";
 		topics[6] = "cute animal memes";
 	}
+	
 	/**
 	 * Takes the user's text input and gives the Chatbot's response as a string
-	 * @param input - What the user typed in
+	 * @param input What the user typed in
 	 * @return The Chatbot's response
 	 */
 	public String processConversation(String input)
@@ -150,6 +161,7 @@ public class Chatbot
 		response += buildChatbotResponse();
 		return response;
 	}
+	
 	/**
 	 * Gives a random String for the Chatbot's response using the chatbot's sentence parts
 	 * @return The generated response of the Chatbot
@@ -193,12 +205,13 @@ public class Chatbot
 		
 		return response + "\n";
 	}
+
 	/**
-	 * 
-	 * @param input - the String being checked (usually the user's response)
-	 * @return a boolean of whether the response was at least 2 characters long
+	 * @param input The String being checked
+	 * @return Boolean of whether the response was at least 2 characters long
 	 */
 	public boolean lengthChecker(String input)
+
 	{
 		if (input != null && input.length() >= 2)
 		{
@@ -206,6 +219,11 @@ public class Chatbot
 		}
 		return false;
 	}
+	
+	/**
+	 * @param input The String being checked (usually the user's response)
+	 * @return Boolean of whether the response was an html tag
+	 */
 	public boolean htmlTagChecker(String input)
 	{
 		input.equals(input.toUpperCase());
@@ -231,10 +249,11 @@ public class Chatbot
 		}
 		return false;
 	}
+	
 	/**
 	 * Checks to make sure the username is valid (starts with a @ but has no @'s after that)
-	 * @param input - the user name being checked
-	 * @return boolean about whether the username was valid (starts with a @ but has no @'s after that)
+	 * @param The String being checked
+	 * @return Boolean about whether the username was valid (starts with a @ but has no @'s after that)
 	 */
 	public boolean userNameChecker(String input)
 	{
@@ -251,12 +270,17 @@ public class Chatbot
 		}
 		return true;
 	}
-	
+
 	public boolean contentChecker(String contentCheck)
 	{
 		return false;
 	}
 	
+	/**
+	 * Checks if the string has a meme
+	 * @param input The String being checked
+	 * @return Boolean of whether the String contained a meme
+	 */
 	public boolean cuteAnimalMemeChecker(String input)
 	{
 		for(String item : cuteAnimalMemes)
@@ -269,18 +293,28 @@ public class Chatbot
 		return false;
 	}
 	
+	/**
+	 * Checks if the input has a shopping item
+	 * @param shoppingItem The String being checked
+	 * @return Boolean of whether the shoppingList contains the item
+	 */
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		for (String item: shoppingList)
 		{
-			if (item.equalsIgnoreCase(shoppingItem))
+			if (item.toLowerCase().contains(shoppingItem))
 			{
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Checks if the input is a movie title
+	 * @param title The String being checked
+	 * @return Boolean of whether it was a movie title
+	 */
 	public boolean movieTitleChecker(String title)
 	{
 		for(Movie thisMovie : movieList)
@@ -293,6 +327,11 @@ public class Chatbot
 		return false;
 	}
 	
+	/**
+	 * Checks to see if the input is a genre
+	 * @param genre The String being checked
+	 * @return Boolean of whether it was a genre
+	 */
 	public boolean movieGenreChecker(String genre)
 	{
 		if(genre.toLowerCase().equals("documentary") || genre.toLowerCase().equals("thriller"))
@@ -301,7 +340,12 @@ public class Chatbot
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Checks if the input has the word quit
+	 * @param exitString The String being checked
+	 * @return Boolean of whether the string had quit
+	 */
 	public boolean quitChecker(String exitString)
 	{
 		if (exitString != null && exitString.toLowerCase().equals("quit"))
@@ -311,6 +355,11 @@ public class Chatbot
 		return false;
 	}
 	
+	/**
+	 * Checks whether the input is a mashed keyboard
+	 * @param sample The String being checked
+	 * @return boolean of whether it was a mashed keyboard
+	 */
 	public boolean keyboardMashChecker(String sample)
 	{
 		//The word Were can be incorrectly shown as mash so I check for that first
@@ -341,6 +390,12 @@ public class Chatbot
 		}
 		return false;
 	}
+
+	/**
+	 * Checks to see if the input is yes (or a synonym), IGNORE THIS METHOD
+	 * @param answer The String being checked
+	 * @return Boolean of whether the input is yes (or a synonym)
+	 */
 	public boolean yesChecker(String answer)
 	{
 		{
@@ -369,6 +424,11 @@ public class Chatbot
 			return false;
 		}
 	}
+	
+	/**
+	 * Getters
+	 * @return the variables specified in the function's name
+	 */
 	public List<Movie> getMovieList()
 	{
 		return movieList;
@@ -425,6 +485,10 @@ public class Chatbot
 		return currentTime;
 	}
 	
+	/**
+	 * Setters
+	 * Set the variables specified in the function's name to the input
+	 */
 	public void setUsername(String username)
 	{
 		this.username = username;
@@ -434,8 +498,12 @@ public class Chatbot
 	{
 		this.content = content;
 	}
+	
+	/**
+	 * Overwrites the toString object method to make it make sense
+	 */
 	public String toString()
 	{
-		return ("I am a santa chatbot");
+		return username.substring(1);
 	}
 }
