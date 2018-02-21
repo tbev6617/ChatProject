@@ -6,3 +6,4 @@ bin/chat/controller/ChatController.class
 bin/chat/view/PopupDisplay.class
 bin/chat/controller/ChatController.class
 bin/chat/controller/ChatRunner.class
+.properties

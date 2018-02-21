@@ -1,9 +1,8 @@
 package chat.controller;
 
 import chat.view.*;
-import java.util.List;
-import java.util.ArrayList;
 import chat.model.Chatbot;
+import chat.model.CTECTwitter;
 /**
  * The controller class
  * @author Tyler Bevan
@@ -14,6 +13,7 @@ public class ChatbotController
 	private PopupDisplay popup;
 	private Chatbot chatbot;
 	private ChatFrame appFrame;
+	private CTECTwitter myTwitter;
 	/**
 	 * Constructor for the ChatbotController 
 	 * Initializes all data members
@@ -21,6 +21,7 @@ public class ChatbotController
 	public ChatbotController()
 	{
 		chatbot = new Chatbot("@Santa");
+		myTwitter = new CTECTwitter(this);
 		//View initialized after model
 		popup = new PopupDisplay();
 		appFrame = new ChatFrame(this);
@@ -190,8 +191,18 @@ public class ChatbotController
 	{
 		return appFrame;
 	}
+	
+	
+	
+	
 	public void handleErrors(Exception error)
 	{
 		popup.displayText(error.getMessage());
 	}
+	
+	public void tweet(String text)
+	{
+		myTwitter.sendTweet(text);
+	}
+	
 }

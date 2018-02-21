@@ -87,8 +87,8 @@ public class ChatPanel extends JPanel
 		chatArea.setDisabledTextColor(Color.black);
 
 		appLayout.putConstraint(SpringLayout.WEST, checkerButton, 15, SpringLayout.EAST, infoLabel);
-		appLayout.putConstraint(SpringLayout.WEST, infoLabel, 25, SpringLayout.WEST, this);
-		appLayout.putConstraint(SpringLayout.NORTH, infoLabel, 11, SpringLayout.SOUTH, chatScrollPane);
+//		appLayout.putConstraint(SpringLayout.WEST, infoLabel, 25, SpringLayout.WEST, this);
+//		appLayout.putConstraint(SpringLayout.NORTH, infoLabel, 11, SpringLayout.SOUTH, chatScrollPane);
 	}
 	
 	private void setupLayout()
@@ -131,6 +131,16 @@ public class ChatPanel extends JPanel
 			}	
 		});
 		
+		saveButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent click) 
+			{
+				
+				
+				
+			}
+		});
+		
 		loadButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent click) 
@@ -138,6 +148,15 @@ public class ChatPanel extends JPanel
 				
 				
 				
+			}
+		});
+		
+		twitterButton.addActionListener(new ActionListener()
+		{		
+			public void actionPerformed(ActionEvent click)
+			{
+				appController.tweet(inputField.getText());
+				inputField.setText("");
 			}
 		});
 	}
