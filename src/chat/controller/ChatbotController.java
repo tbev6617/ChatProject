@@ -192,9 +192,6 @@ public class ChatbotController
 		return appFrame;
 	}
 	
-	
-	
-	
 	public void handleErrors(Exception error)
 	{
 		popup.displayText(error.getMessage());
@@ -203,6 +200,11 @@ public class ChatbotController
 	public void tweet(String text)
 	{
 		myTwitter.sendTweet(text);
+	}
+	
+	public String search(String text)
+	{
+		return myTwitter.getMostCommonWord(text);
 	}
 	
 }
