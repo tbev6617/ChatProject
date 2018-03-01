@@ -7,25 +7,63 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
+import chat.Controller.IOController;
 
 public class CTECTwitter 
 {
 	private ChatbotController appController;
 	private Twitter appTwitter;
 	private List<Status> searchedTweets;
-	private List<Status> tweetedWords;
+	private List<String> tweetedWords;
+	private long totalWordCount;
 	
 	public CTECTwitter(ChatbotController appController)
 	{
 		this.appController = appController;
 		this.appTwitter = TwitterFactory.getSingleton();
 		searchedTweets = new ArrayList<Status>();
-		tweetedWords = new ArrayList<Status>();
+		tweetedWords = new ArrayList<String>();
 	}
 	
-	public String getMostCommonWord(String text)
+	public String getMostCommonWord(String username)
 	{
-		return "TODO";
+		
+		collectTweets(username);
+		turnStatusesToWords();
+		totalWordCount = tweetedWords.size();
+		String[] boring = createIgnoredWordArray();
+		
+		return "";
+		
+	}
+	
+	private void turnStatusesToWords()
+	{
+		for(Status currentStatus : searchedTweets)
+		{
+			String tweetText = currentStatus.getText();
+			String[] tweetWords = tweetText.split(" ");
+			for(int i = 0; i < tweetWords.length; i++)
+			{
+				tweetedWords.add(removePunctuation(tweetWords[i]).trim());
+			}
+		}
+	}
+	
+	private String removePunctuation(String text)
+	{
+		String punctuation = ".,'?!:;\"() {}^[]<>-_*";
+		
+		String scrubbedString = "";
+		for (int i = 0; i < text.length(); i++)
+		{
+			if(punctuation.indexOf(text.charAt(i)) == -1)
+			{
+				scrubbedString += text.charAt(i);
+			}
+		}
+				
+		return scrubbedString;
 	}
 	
 	private void collectTweets(String username)
@@ -57,6 +95,31 @@ public class CTECTwitter
 			}
 			page ++;
 		}
+	}
+	private String[] createIgnoredWordArray()
+	{
+		String[] boringWords;
+		String filetext = IOController.loadFromFile(appController, "commonWords.txt");
+		int wordCount = 0;
+		
+		Scanner wordScanner = new Scanner(filetext);
+		
+		while(wordScanner.hasNextLine())
+		{
+			wordScanner.nextLine();
+			wordCount++;
+		}
+		
+		boringWords = new String [wordCount];
+		wordScanner.close();
+		
+		//Alternative file loading method
+		//Uses InputStream class
+		//Notice lack of try/catch
+		
+		wordScanner = new Scanner(this.getClass().getResourceAsStream("data/commonWords.txt"));
+		// TODO finish this part
+		//TODO fix ioController
 	}
 	
 	public void sendTweet(String textToTweet)
