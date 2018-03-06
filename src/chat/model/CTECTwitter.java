@@ -27,14 +27,34 @@ public class CTECTwitter
 	
 	public String getMostCommonWord(String username)
 	{
-		
+		String mostCommon = "";
 		collectTweets(username);
 		turnStatusesToWords();
 		totalWordCount = tweetedWords.size();
 		String[] boring = createIgnoredWordArray();
+		trimBoringWords(boring);
 		
-		return "";
+		return mostCommon;
 		
+	}
+	
+	private void trimBoringWords(String [] boringWords) 
+	{
+		for(int i = tweetedWords.size() - 1; i >= 0; i--)
+		{
+			for(String word : boringWords)
+			{
+				if(tweetedWords.get(i).equalsIgnoreCase(word))
+				{
+					tweetedWords.remove(i);
+					break;
+				}
+				else
+				{
+					
+				}
+			}
+		}
 	}
 	
 	private void turnStatusesToWords()
@@ -118,8 +138,7 @@ public class CTECTwitter
 		//Notice lack of try/catch
 		
 		wordScanner = new Scanner(this.getClass().getResourceAsStream("data/commonWords.txt"));
-		// TODO finish this part
-		//TODO fix ioController
+		
 	}
 	
 	public void sendTweet(String textToTweet)
