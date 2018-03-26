@@ -12,7 +12,7 @@ public class PopupDisplay
 	public PopupDisplay()
 	{
 		icon = new ImageIcon(getClass().getResource("images/Santa.png"));
-		windowTitle = "Santa says";
+		windowTitle = "Popup";
 	}
 	
 	public void displayText(String message)

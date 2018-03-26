@@ -2,6 +2,7 @@ package chat.controller;
 
 import chat.view.*;
 import chat.model.Chatbot;
+import chat.view.PopupDisplay;
 import chat.model.CTECTwitter;
 /**
  * The controller class

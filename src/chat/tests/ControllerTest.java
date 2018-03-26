@@ -6,9 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import blackjack.view.PopupDisplay;
 import chat.controller.ChatbotController;
 import chat.model.Chatbot;
-import chat.view.PopupDisplay;
 import chat.view.ChatFrame;
 
 public class ControllerTest
